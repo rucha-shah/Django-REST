@@ -1,0 +1,49 @@
+1.	Change directory (folder where you want to store codes and files)
+2.	git config --global user.name "<your name>"
+3.	git config --global user.email "<your email>"
+4.	git clone <URL>
+	URL---> To find the repository address, go to a repository on GitHub and click the Clone or download repository link to get the address
+
+5.	A folder is created as a local repository, change directory to that folder.
+6.	git remote (If successful, you should see "origin" that is the name of your master Git branch.)
+7.	git remote -v  (To see aliases)
+
+Creating a new file and pushing to remote repository
+1.	start notepad <fileName>.txt
+2.	git status (shows fileName in red to indicate untracked file)
+3.	git add <fileName>.txt (adds the untracked file for commit)(git status shows fileName in green that the file is a new file that is ready to be committed.)
+4.	git commit -m "<Description>" (commit the changes made in the local workspace to the local repository)
+	Now that changes have been moved from your workspace into your local repository it is ready to be pushed to the remote repository. 
+
+5.	git push
+
+git add -A to add all pending to be added for commit.
+Pulling or fetching updates from the remote repository
+If it's been awhile since you've committed any work, perform the git pull command to get the latest updates from the remote repository and merge them into your local repository. By pulling all of the updates from a repository before commiting, you can make sure your local repository and the remote repository are the same to help prevent merge conflicts.
+To get all changes without merging, run the git fetch command to grab all of the latest updates from the remote repository without merging any of the new changes.
+How to deal with a Git merge conflict
+When multiple people are working with the same files, you're going to encounter merge conflicts. When a conflict occurs, Git will modify your local files and it is up to you to manually fix the files with the conflicts.
+Tip
+Use the git status command to see the status and merge conflict information.
+Open the file with the conflict to start correcting the errors. In the example file below, we had a text file with one line of text and in the local repository we added the text "update1" to the file. However, during the same time, the remote repository file was modified and added "update2" to the file on the same line. Git marks conflicts with "<<<<<<< HEAD" for lines in the current branch and everything after "=======" as the remote changes followed by ">>>>>>> < hash >" to represent the end of the conflict.
+Another file that is uploaded in-between pulls.
+<<<<<<< HEAD
+update1
+=======
+update2
+>>>>>>> 62ee0eeba2e5b94d10574c1a6a68216e9b392e4c
+To resolve this merge conflict, we would need to decide what text we wanted to keep, update, or remove. In this example, we want to keep "update1" and "update2" in the order they're listed so we would only need to remove the Git markings to make the file resemble the following example.
+Another file that is uploaded in-between pulls.
+update1
+update2
+Note
+If you're working with a big file, it's a good idea to search the file for "HEAD" because it is possible that there may be more than one conflict.
+Once the changes are made in the file, we could save the file and then perform the following git commands to update the fixes.
+git add .
+git commit -m "Fixed the merge conflict"
+git push origin master
+The example given in this merge conflict is a very basic example. When dealing with a file that has more than a few lines of text or has big sections of code conflicting dealing with a merge conflict can get a lot more confusing. To make it easier to deal with merge conflicts, you can use the command git mergetool to use a merge tool, such as WinMerge or another popular merge tool.
+Creating branch
+git branch <Branch Name>  ->to create branch
+git checkout <Branch Name> -> to go to the branch mentioned as branch name
+git checkout –b <Branch Name> ->Combination of above two commands
